@@ -20,5 +20,8 @@
   "homepage": "https://github.com/ishandahal/webcrawlerHttp#readme",
   "devDependencies": {
     "jest": "^29.5.0"
+  },
+  "dependencies": {
+    "jsdom": "^21.1.2"
   }
 }
