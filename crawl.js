@@ -1,4 +1,29 @@
-const { JSDOM } = require("jsdom");
+// const { JSDOM } = require("jsdom");
+import JSDOM from "jsdom";
+
+async function crawlPage(url) {
+  console.log(`Actively crawling ${url}`);
+  try {
+    const resp = await fetch(url);
+
+    const status = resp.status;
+
+    if (status > 399) {
+      console.log(`Error with fetch status code ${status} with ${url}`);
+      return;
+    }
+
+    const contentType = resp.headers.get("content-type");
+
+    if (!contentType.includes("text/html")) {
+      console.log(`Content type: ${contentType} in ${url}`);
+      return;
+    }
+    console.log(await resp.text());
+  } catch (err) {
+    console.log(`Error: ${err.message} with ${url}`);
+  }
+}
 
 function getURLsFromHTML(HTMLbody, basePath) {
   const URLsArray = [];
@@ -36,4 +61,5 @@ function normalizeURL(urlString) {
   return hostPath;
 }
 
-module.exports = { normalizeURL, getURLsFromHTML };
+// module.exports = { normalizeURL, getURLsFromHTML, crawlPage };
+export { crawlPage };
