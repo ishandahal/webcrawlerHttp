@@ -1,11 +1,12 @@
 function printPages(pages) {
+  // Printing output in a user friendly manner
   console.log('==================');
   console.log('REPORT');
   console.log('==================');
 
+  // Sort links by frequency of visits
   const sortedPages = sortPages(pages);
   for (let index = 0, l = sortedPages.length; index < l; index += 1) {
-    //   for (const page of sortedPages) {
     const page = sortedPages[index];
     const url = page[0];
     const hits = page[1];

@@ -29,6 +29,7 @@ async function crawlPage(baseURL, currentURL, pages) {
 
     const status = resp.status;
 
+    // Check the status
     if (status > 399) {
       console.log(`Error with fetch status code ${status} with ${currentURL}`);
       return pages;
@@ -36,11 +37,13 @@ async function crawlPage(baseURL, currentURL, pages) {
 
     const contentType = resp.headers.get('content-type');
 
+    // Check if the contents of url is html
     if (!contentType.includes('text/html')) {
       console.log(`Content type: ${contentType} in ${currentURL}`);
       return pages;
     }
 
+    // Read the html body
     const htmlBody = await resp.text();
 
     const nextURLs = getURLsFromHTML(htmlBody, baseURL);
@@ -61,6 +64,7 @@ function getURLsFromHTML(HTMLbody, basePath) {
   const dom = new JSDOM(HTMLbody);
   const linkElements = dom.window.document.querySelectorAll('a');
 
+  // Iterate through the links and append valid urls to an URLsArray
   for (const link of linkElements) {
     if (link.href.slice(0, 1) === '/') {
       // Relative url
