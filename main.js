@@ -1,5 +1,6 @@
 // import { crawlPage } from './crawl.js';
 const { crawlPage } = require('./crawl');
+const { printPages } = require('./report');
 
 async function main() {
   if (process.argv.length < 3) {
@@ -15,9 +16,11 @@ async function main() {
 
   const pages = await crawlPage(baseURL, baseURL, {});
 
-  for (const page of Object.entries(pages)) {
-    console.log(page);
-  }
+  printPages(pages);
+
+  // for (const page of Object.entries(pages)) {
+  //   console.log(page);
+  // }
 }
 
 main();

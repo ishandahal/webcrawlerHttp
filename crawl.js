@@ -14,7 +14,7 @@ async function crawlPage(baseURL, currentURL, pages) {
   // If we have already visited this page
   // just increase the count and don't visit again
   if (pages[normalizedURL] > 0) {
-    pages[normalizedURL]++;
+    pages[normalizedURL] += 1;
     return pages;
   }
 
