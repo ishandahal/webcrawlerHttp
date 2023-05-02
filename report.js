@@ -4,7 +4,9 @@ function printPages(pages) {
   console.log('==================');
 
   const sortedPages = sortPages(pages);
-  for (const page of sortedPages) {
+  for (let index = 0, l = sortedPages.length; index < l; index += 1) {
+    //   for (const page of sortedPages) {
+    const page = sortedPages[index];
     const url = page[0];
     const hits = page[1];
 
